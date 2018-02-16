@@ -91,7 +91,7 @@ export default {
 
             this.$http.post("https://jsonplaceholder.typicode.com/posts", newPost)
                 .then(function(response) {
-                    //this.$router.push({path: '/'});
+                    this.$router.push({path: '/'});
                     console.log(newPost);
                 });
             e.preventDefault();

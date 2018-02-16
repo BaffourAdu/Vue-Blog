@@ -59,6 +59,9 @@ export default {
   },
   created: function() {
       this.fetchBlogs();
+  },
+  updated: function() {
+      this.fetchBlogs();
   }
 }
 </script>
