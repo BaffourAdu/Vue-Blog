@@ -26,14 +26,12 @@
 
 <script>
 import MainNav from './MainNav'
-import data from '../assets/posts.json'
 
 export default {
   name:'blogs',
   data () {
       return {
           blogs: [],
-          posts: data
       }
   },
     components: {
@@ -41,7 +39,6 @@ export default {
   },
   methods: {
       fetchBlogs() {
-                this.blogs = this.posts
       }
   },
   created: function() {

@@ -8,7 +8,6 @@
         <form v-on:submit="createPost">
             <div class="form-group">
                 <label>Post Image</label>
-                <input type="file" name="postImage"  class="form-control">
                 <picture-input 
                     ref="pictureInput" 
                     @change="onChange" 
@@ -19,6 +18,7 @@
                     :toggleAspectRatio="true"
                     height="200" 
                     margin="16" 
+                    v-model="post.image"
                     name="postImage"
                     id="postImage"
                     accept="image/jpeg,image/png" 
@@ -85,16 +85,15 @@ export default {
         }else{
             let newPost = {
                 title: this.post.title,
-                body: this.post.body
+                body: this.post.body,
+                post_image: this.image
             }
 
-            console.log(newPost);
-
-             /*
-            this.$http.post("../assets/posts.json", newPost)
+            this.$http.post("https://jsonplaceholder.typicode.com/posts", newPost)
                 .then(function(response) {
-                    this.$router.push({path: '/'});
-                });*/
+                    //this.$router.push({path: '/'});
+                    console.log(newPost);
+                });
             e.preventDefault();
         }
         e.preventDefault();
