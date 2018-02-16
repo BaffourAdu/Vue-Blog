@@ -20,10 +20,10 @@
                     <td>{{blog.name}}</td>
                     <td>{{blog.title}}</td>
                     <td>{{blog.body}}</td>
-                    <td colspan="3">
+                    <td colspan="2">
                         <div class="btn-group">
-                          <input type="button" value="Edit Post"  class="btn btn-primary">
-                          <input type="button" value="Delete Post" @click="deletePost(blog.id)" class="btn btn-danger">
+                          <router-link class="btn btn-primary" v-bind:to="'/edit/post/'+blog.id">Edit</router-link>
+                          <input type="button" value="Delete" @click="deletePost(blog.id)" class="btn btn-danger">
                         </div>
                     </td>
                 </tr>

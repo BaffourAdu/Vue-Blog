@@ -9,8 +9,7 @@ import Admin from './components/Admin'
 import AddPost from './components/AddPost'
 import ViewPost from './components/ViewPost'
 import AllPosts from './components/AllPosts'
-
-
+import EditPost from './components/EditPost'
 
 
 Vue.config.productionTip = false
@@ -27,7 +26,8 @@ const router = new VueRouter ({
     {path: '/admin', component: Admin},
     {path: '/admin/posts', component: AllPosts},
     {path: '/new/post', component: AddPost},
-    {path: '/post/:id', component: ViewPost}
+    {path: '/post/:id', component: ViewPost},
+    {path: '/edit/post/:id', component: EditPost}
   ]
 });
 
