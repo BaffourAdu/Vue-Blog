@@ -1,22 +1,17 @@
 <template>
-  <div class="blogs">
+  <div class="postDetails">
     <div class="container">
             <MainNav/>
 
-            <div style="margin-top:10px">
+            <div style="margin-top:30px;margin-bottom:20px">
                 <img src="http://placekitten.com/g/1200/400" alt="company logo" style="width: 100%;">
             </div>       
 
             <div class="blog-post">
-                <h2 class="blog-post-title">Another blog post</h2>
-                <p class="blog-post-meta">December 23, 2013 by <a href="#">Jacob</a></p>
 
-                <p>Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.</p>
-                <blockquote>
-                <p>Curabitur blandit tempus porttitor. <strong>Nullam quis risus eget urna mollis</strong> ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                </blockquote>
-                <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
-                <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+                <h2 class="blog-post-title" style="margin-top:10px;margin-bottom:20px">{{post.title}}</h2>
+
+                <p>{{post.body}}</p>
             </div><!-- /.blog-post -->
 
         </div>
@@ -28,21 +23,26 @@
 import MainNav from './MainNav'
 
 export default {
-  name:'blogs',
+  name:'postDetails',
   data () {
       return {
-          blogs: [],
+          post : ''
       }
   },
     components: {
     MainNav
   },
   methods: {
-      fetchBlogs() {
+      fetchPost(id) {
+            this.$http.get("https://jsonplaceholder.typicode.com/posts/"+ id)
+                .then(function(response){
+                        this.post = response.body;
+                        console.log(this.post);
+                });
       }
   },
   created: function() {
-      this.fetchBlogs();
+      this.fetchPost(this.$route.params.id);
   }
 }
 </script>
