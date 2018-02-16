@@ -8,7 +8,7 @@
         <form v-on:submit="createPost">
             <div class="form-group">
                 <label>Post Image</label>
-               <!-- <input type="file" name="postImage"  class="form-control">
+                <input type="file" name="postImage"  class="form-control">
                 <picture-input 
                     ref="pictureInput" 
                     @change="onChange" 
@@ -37,7 +37,7 @@
                         fileType: 'This file type is not supported.', // Text only
                         aspect: 'Landscape/Portrait' // Text only
                     }">
-                </picture-input> -->
+                </picture-input> 
             </div>
             <div class="form-group">
                 <label>Post Title</label>
@@ -57,7 +57,6 @@
 <script>
 import MainNav from './MainNav'
 import PictureInput from 'vue-picture-input'
-import axios from 'axios'
 
 export default {
   name:'addpost',
@@ -90,14 +89,6 @@ export default {
             }
 
             console.log(newPost);
-            const ax = axios.create({
-                 baseURL: 'http://localhost:8080/src/assets/'
-            })
-            axios.post('posts.json').then((response) => {
-                console.log(response.data); 
-            }, (error) => {
-                console.log(error)
-            })
 
              /*
             this.$http.post("../assets/posts.json", newPost)

@@ -12,7 +12,7 @@
             </div>
 
             <div class="row mb-2">
-                <div class="col-md-6 blog" v-for="blog in blogs">
+                <div class="col-md-6 blog" v-for="blog in blogs.slice(0, 6)">
                 <div class="card flex-md-row mb-4 box-shadow h-md-250">
                     <div class="card-body d-flex flex-column align-items-start">
                         <h5 class="mb-0">
@@ -48,14 +48,13 @@ export default {
   },
   methods: {
       fetchBlogs() {
-        //https://jsonplaceholder.typicode.com/posts
-         /* this.$http.get(this.posts)
+          this.$http.get("https://jsonplaceholder.typicode.com/posts")
                 .then(function(response){
                         this.blogs = response.body;
                         console.log(this.blogs);
-                });*/
+                });
 
-                this.blogs = this.posts
+                //this.blogs = this.posts
       }
   },
   created: function() {
