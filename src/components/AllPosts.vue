@@ -3,6 +3,9 @@
         <MainNav/>
         
         <h1>All Posts</h1>
+        
+        <Alert v-if="alert" v-bind:message="alert"/>
+
         <table class="table table-striped">
             <thead>
                 <th>Post Id</th>
@@ -17,13 +20,11 @@
                     <td>{{blog.name}}</td>
                     <td>{{blog.title}}</td>
                     <td>{{blog.body}}</td>
-                    <td colspan="2">
-                      <form action="">
-                        <input type="button" value="Edit Post" class="btn btn-primary">
-                      </form><br>
-                      <form action="">
-                        <input type="button" value="Delete Post" class="btn btn-danger">
-                      </form>
+                    <td colspan="3">
+                        <div class="btn-group">
+                          <input type="button" value="Edit Post"  class="btn btn-primary">
+                          <input type="button" value="Delete Post" @click="deletePost(blog.id)" class="btn btn-danger">
+                        </div>
                     </td>
                 </tr>
             </tbody>
@@ -34,33 +35,40 @@
 
 <script>
 import MainNav from './MainNav'
-import data from '../assets/posts.json'
+import Alert from './Alert'
+
 
 export default {
   name:'blogs',
   data () {
       return {
           blogs: [],
-          posts: data
+          alert: ''
       }
   },
     components: {
-    MainNav
+    MainNav, Alert
   },
   methods: {
-      fetchBlogs() {
-        //https://jsonplaceholder.typicode.com/posts
-         /* this.$http.get(this.posts)
+      fetchPosts() {
+          this.$http.get("https://jsonplaceholder.typicode.com/posts")
                 .then(function(response){
                         this.blogs = response.body;
                         console.log(this.blogs);
-                });*/
+                });
 
-                this.blogs = this.posts
+      },
+      deletePost (id) {
+            this.$http.delete("https://jsonplaceholder.typicode.com/posts/"+ id)
+                .then(function(response){
+                        this.post = response.body;
+                        this.alert = "Post with id " + id+ " deleted !";
+                        console.log(this.post);
+                });
       }
   },
   created: function() {
-      this.fetchBlogs();
+      this.fetchPosts();
   }
 }
 </script>
