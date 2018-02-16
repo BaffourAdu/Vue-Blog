@@ -2,9 +2,11 @@
   <div class="addpost">
     <div class="container">
         <MainNav/>
-
         <h1>Add New Post</h1>
-        
+        <hr>
+
+        <Alert v-if="alert" v-bind:message="alert"/>
+
         <form v-on:submit="createPost">
             <div class="form-group">
                 <label>Post Image</label>
@@ -41,11 +43,11 @@
             </div>
             <div class="form-group">
                 <label>Post Title</label>
-                <input type="text" class="form-control" v-model="post.title" placeholder="Enter Post Title">
+                <input type="text" class="form-control" v-model="post.title" placeholder="Enter Post Title" required>
             </div>
             <div class="form-group">
                 <label>Post Body</label>
-                <textarea class="form-control" v-model="post.body" rows="5" placeholder="Enter your Post here"></textarea>
+                <textarea class="form-control" v-model="post.body" rows="5" placeholder="Enter your Post here" required></textarea>
             </div>
                 <input type="submit" value="Submit" class="btn btn-primary">
         </form>
@@ -57,16 +59,18 @@
 <script>
 import MainNav from './MainNav'
 import PictureInput from 'vue-picture-input'
+import Alert from './Alert'
 
 export default {
   name:'addpost',
   data () {
       return {
-            post: {}
+            post: {},
+            alert: ''
       }
   },
     components: {
-    MainNav, PictureInput
+    MainNav, PictureInput, Alert
   },
   methods: {
     onChange (image) {
@@ -79,9 +83,11 @@ export default {
       }
     },
     createPost(e){
-        console.log("Form Submitted");
+
+        console.log("Form has been Submitted");
+
         if (!this.post.title || !this.post.body) {
-            console.log("empty input");   
+            console.log("Please fill in all required fields");   
         }else{
             let newPost = {
                 title: this.post.title,
@@ -91,7 +97,9 @@ export default {
 
             this.$http.post("https://jsonplaceholder.typicode.com/posts", newPost)
                 .then(function(response) {
-                    this.$router.push({path: '/'});
+                    //Ridirect back to homepage
+                    this.alert = "New Post Created !"
+                    //this.$router.push({path: '/'});
                     console.log(newPost);
                 });
             e.preventDefault();

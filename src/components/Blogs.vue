@@ -2,6 +2,7 @@
   <div class="blogs">
     <div class="container">
             <MainNav/>
+            
 
             <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark">
                 <div class="col-md-6 px-0">
@@ -33,14 +34,12 @@
 
 <script>
 import MainNav from './MainNav'
-import data from '../assets/posts.json'
 
 export default {
   name:'blogs',
   data () {
       return {
           blogs: [],
-          posts: data
       }
   },
     components: {
@@ -54,13 +53,9 @@ export default {
                         console.log(this.blogs);
                 });
 
-                //this.blogs = this.posts
       }
   },
   created: function() {
-      this.fetchBlogs();
-  },
-  updated: function() {
       this.fetchBlogs();
   }
 }
