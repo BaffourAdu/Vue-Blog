@@ -1,9 +1,7 @@
 <template>
   <div id="app">
-   <!-- <Test msg="Hello Over Foober"/>-->
     <users/>
-    <!-- <img src="./assets/logo.png"> -->
-    <!-- <HelloWorld/> -->
+
   </div>
 </template>
 
@@ -18,18 +16,6 @@ export default {
 }
 </script>
 
-<!--
-<script>
-import HelloWorld from './components/HelloWorld'
-
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
-</script>
--->
 
 <style>
 #app {
