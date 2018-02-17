@@ -1,0 +1,10 @@
+{
+    "name": "vue-blog",
+    "version": "1.0.0",
+    "description": "A Vue.js Blog",
+    "author": "Baffour Adu Boampong",
+    "private": true,
+    "scripts": {
+        "postinstall": "npm install express"
+      }
+}
